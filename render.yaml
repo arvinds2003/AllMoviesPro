@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: allmoviespro-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: TMDB_API_KEY
+        sync: false
+      - key: ADMIN_USER_IDS
+        value: "7284469492,6377251819"
+      - key: WATCH_REGION
+        value: "IN"
+      - key: APP_BRAND
+        value: "AllMoviesPro"
+      - key: APP_TAGLINE
+        value: "Powered by Empire Movies"
