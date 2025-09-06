@@ -23,7 +23,25 @@ from telegram.ext import (
     Application, ApplicationBuilder, CommandHandler,
     CallbackQueryHandler, MessageHandler, filters, ContextTypes
 )
+from telegram import Update
+from telegram.ext import CommandHandler, ContextTypes
 
+# /start command ka function
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "👋 Hello! AllMoviesPro Bot is alive and running!"
+    )
+
+def main():
+    application = ApplicationBuilder().token(BOT_TOKEN).build()
+
+    # 👉 Register /start command handler
+    application.add_handler(CommandHandler("start", start))
+
+    # Baaki handlers bhi yaha add karo (MessageHandler, CallbackQueryHandler, etc.)
+
+    application.run_polling()
+    
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
